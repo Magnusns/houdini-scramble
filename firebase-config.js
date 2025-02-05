@@ -42,7 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 await db.collection('registrations').add(formData);
                 
                 // Show success message
-                alert('Registrering vellykket! Vi tar kontakt snart.');
+                const notification = document.createElement('div');
+                notification.className = 'success-notification';
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <span class="notification-icon">✓</span>
+                        <span class="notification-text">Gratulerer, du er påmeldt! Vi tar snart kontakt med deg for videre detaljer.</span>
+                    </div>
+                `;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.classList.add('fade-out');
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 500);
+                }, 3000);
                 registrationForm.reset();
             } catch (error) {
                 console.error('Error submitting form:', error);
