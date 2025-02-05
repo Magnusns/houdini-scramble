@@ -1038,6 +1038,15 @@ footer {
         border-left: none;
         border-right: none;
         z-index: 999;
+        transform: translateY(0);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 1;
+    }
+    
+    .countdown-timer.countdown-hidden {
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
     }
     
     .countdown-item {
@@ -1086,11 +1095,14 @@ footer {
         border-right: none;
         z-index: 999;
         transform: translateY(0);
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 1;
     }
     
     .countdown-timer.countdown-hidden {
         transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
     }
     
     .countdown-item {
@@ -1098,11 +1110,11 @@ footer {
     }
     
     .countdown-item span:first-child {
-        font-size: 24px;
+        font-size: 28px;
     }
     
     .countdown-label {
-        font-size: 11px;
+        font-size: 12px;
     }
 
     /* Adjust hero content to account for fixed countdown */

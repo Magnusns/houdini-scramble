@@ -20,24 +20,32 @@ function updateCountdown() {
 }
 
 // Handle scroll behavior for mobile
-let lastScrollTop = 0;
 const countdownTimer = document.querySelector('.countdown-timer');
+const heroSection = document.querySelector('.hero');
+
+function isInHeroSection() {
+    if (!heroSection) return false;
+    const heroRect = heroSection.getBoundingClientRect();
+    const heroBottom = heroRect.bottom;
+    return heroBottom > 0;
+}
 
 window.addEventListener('scroll', () => {
     if (window.innerWidth <= 768) {  // Only for mobile
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop && scrollTop > 80) {
-            // Scrolling down
+        if (!isInHeroSection()) {
             countdownTimer.classList.add('countdown-hidden');
         } else {
-            // Scrolling up
             countdownTimer.classList.remove('countdown-hidden');
         }
-        
-        lastScrollTop = scrollTop;
     }
 });
+
+// Initial check
+if (window.innerWidth <= 768) {
+    if (!isInHeroSection()) {
+        countdownTimer.classList.add('countdown-hidden');
+    }
+}
 
 // Update the countdown every second
 updateCountdown();
